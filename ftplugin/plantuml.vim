@@ -24,6 +24,9 @@ augroup slumlord
     autocmd BufWritePre * if &ft =~ 'plantuml' | silent call slumlord#updatePreview({'write': 1}) | endif
 augroup END
 
+" command {{{1
+command! SlumlordToggle call slumlord#toggle()
+
 " Outro {{{1
 let &cpo = s:save_cpo
 unlet s:save_cpo
