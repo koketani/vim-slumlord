@@ -20,6 +20,7 @@ let g:slumlord_plantuml_jar_path = get(g:, 'slumlord_plantuml_jar_path', expand(
 let g:slumlord_plantuml_include_path = get(g:, 'slumlord_plantuml_include_path', expand("~/.config/plantuml/include/"))
 let g:slumlord_asciiart_utf = get(g:, 'slumlord_asciiart_utf', 1)
 let g:slumlord_enabled = get(g:, 'slumlord_enabled', 1)
+let g:slumlord_separate_win_horizontal = get(g:, 'slumlord_separate_win_horizontal', 1)
 
 " function {{{1
 function! slumlord#updatePreview(args) abort
@@ -239,7 +240,11 @@ function s:WinUpdater.__moveToWin() abort
         endif
     else
         let prev_bnum = bufnr("")
-        new
+        if g:slumlord_separate_win_horizontal
+            new
+        else
+            vnew
+        endif
         setlocal buftype=nofile
         setlocal bufhidden=wipe
         setlocal noswapfile
