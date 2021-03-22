@@ -19,7 +19,7 @@ set cpo&vim
 let g:slumlord_plantuml_jar_path = get(g:, 'slumlord_plantuml_jar_path', expand("<sfile>:p:h") . "/../plantuml.jar")
 let g:slumlord_plantuml_include_path = get(g:, 'slumlord_plantuml_include_path', expand("~/.config/plantuml/include/"))
 let g:slumlord_asciiart_utf = get(g:, 'slumlord_asciiart_utf', 1)
-let b:slumlord_enabled = get(g:, 'slumlord_enabled', 1)
+let g:slumlord_enabled = get(g:, 'slumlord_enabled', 1)
 
 " function {{{1
 function! slumlord#updatePreview(args) abort
@@ -57,7 +57,7 @@ endfunction
 
 function! s:shouldInsertPreview() abort
     "check live preview is enabled
-    if !b:slumlord_enabled
+    if !g:slumlord_enabled
         return
     endif
 
@@ -157,11 +157,11 @@ function! s:addTitle() abort
 endfunction
 
 function! slumlord#toggle()
-    if b:slumlord_enabled
-        let b:slumlord_enabled = 0
+    if g:slumlord_enabled
+        let g:slumlord_enabled = 0
         echo 'Slumlord Disabled.'
     else
-        let b:slumlord_enabled = 1
+        let g:slumlord_enabled = 1
         echo 'Slumlord Enabled.'
     endif
 endfunction
